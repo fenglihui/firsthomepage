@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+<div class="all">
+    <div id="title"></div>
+    <img src="img/注册.png" class="register_title">
+    <div id="cont">
+        <form id="form" name="form" class="form-horizontal" action="" method="post" onsubmit="return register()" target="nm_iframe">
+            <div class="register">
+                <p class="ts"></p>
+                <label for="your_name" class="font">昵&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp称：</label>
+                <input type="text" id="your_name" name="your_name" placeholder="请输入您的昵称" maxlength="8" class="sr form-control">
+            </div>
+            <div class="register">
+                <p class="ts"></p>
+                <label for="email" class="font">账&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp号：</label>
+                <input type="email" id="email" name="email" placeholder="请输入邮箱，邮件将作为用户名登录" class="sr form-control">
+            </div>
+            <div class="register">
+                <p class="ts"></p>
+                <label for="password" class="font">密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码：</label>
+                <input type="password" id="password" name="password" placeholder="请输入6-18位的密码" minlength="6" maxlength="18" class="sr form-control">
+            </div>
+            <div class="register">
+                <p class="ts"></p>
+                <label for="second_password" class="font">确认密码：</label>
+                <input type="password" id="second_password" name="second_password" placeholder="请再次输入6-18位的密码" minlength="6" maxlength="18" class="sr form-control">
+            </div>
+            <div class="register">
+                <input type="submit" value="点击注册" id="submit" class="button-glow button-border button-rounded button-primary">
+            </div>
+        </form>
+        <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+        <div id="register_inf">
+            <img src="img/注册成功.png" id="ok">
+            <img src="img/错误.png" title="关闭" alt="关闭" id="error">
+            <p>注册成功，点击<a href="login.html">此处登录</a></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var success = false;
+    function register() {
+        if($(".ts").eq(0).html()==""&&$(".ts").eq(2).html()==""&&$(".ts").eq(3).html()==""&&$(".ts").eq(1).html()=="用户名可用") {
+            $.ajax({
+                url: "php/register.php",
+                async: false,
+                type: "POST",
+                data: {
+                    your_name: $("#your_name").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                    second_password: $("#second_password").val()
+                },
+                success: function (data) {
+                    if (data == "t") {
+                        success = true;
+                    }
+                }
+            });
+        }
+        if(success){
+            $("#register_inf").css("display","block");
+        }
+        return success;
+    }
+    $(document).ready(function(){
+        var ts=["用户昵称不能为空","用户名不能为空","密码不能为空","确认密码不能为空"];
+        $(".sr").blur(function(){
+            if($(this).val()==""){
+                var index=$(".sr").index($(this));
+                $(this).siblings(".ts").html(ts[index]);
+            }
+            if ($(".sr").eq(1).val()!=""){
+                $.ajax({
+                    url:"php/checkusername.php",
+                    async:true,
+                    type:"POST",
+                    data:{email:$("#email").val()},
+                    success:function (data) {
+                            $(".sr").eq(1).siblings(".ts").html(data);
+                            if(data=="用户名可用"){
+                                $(".sr").eq(1).siblings(".ts").css("color","#00ff1a");
+                            }
+                            else{
+                                $(".sr").eq(1).siblings(".ts").css("color","#ff0d00");
+                            }
+                    }
+                });
+            }
+            if($(".sr").eq(2).val()!=$(".sr").eq(3).val()){
+                $(".sr").eq(2).siblings(".ts").html("两次输入密码不一致");
+                $(".sr").eq(3).siblings(".ts").html("两次输入密码不一致");
+            }
+        });
+        $(".sr").focus(function () {
+           $(this).siblings(".ts").html("");
+        });
+        $("#error").click(function () {
+           $("#register_inf").css("display","none");
+        });
+    });
+</script>
+</body>
+</html>

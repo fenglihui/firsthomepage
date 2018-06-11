@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div id="my_background">
+    <img src="img/beijing1.jpg">
+</div>
+<div id="all">
+<header>
+<nav id="head">
+    <ul id="nav">
+        <li class="nav"><a href="homepage.html">首页</a></li>
+        <li class="nav"><a href="#">个人简介</a>
+            <ul class="nav_2" id="work_per">
+                <li><a href="#">基本信息</a></li>
+                <li><a href="#">工作经历</a></li>
+                <li><a href="#">兴趣爱好</a></li>
+            </ul>
+        </li>
+        <li class="nav"><a href="#">心路历程</a>
+            <ul class="nav_2">
+                <li><a href="#">小学</a></li>
+                <li><a href="#">初中</a></li>
+                <li><a href="#">高中</a></li>
+                <li><a href="#">大学</a></li>
+                <li><a href="#">现在</a></li>
+            </ul>
+        </li>
+        <li class="nav"><a href="#">友情链接</a>
+            <ul class="nav_2">
+                <li><a href="#">学工系统</a></li>
+                <li><a href="https://www.bilibili.com/" target="_blank">bilibili</a></li>
+                <li><a href="https://www.baidu.com/" target="_blank">百度</a></li>
+            </ul>
+        </li>
+        <li class="nav"><a href="#">帮助</a>
+        </li>
+    </ul>
+    <div id="login">
+        <a href="login.html" target="_blank" title="登录"><img src="img/timg1.jpg" alt="登录"></a>
+    </div>
+    <div id="welcome">
+        <p>欢迎用户：</p>
+        <p id="cookies"></p>
+        <p id="zx">点击此处<a href="homepage.html" style="text-decoration: none;">更换用户</a></p>
+    </div>
+    <form id="form1" action="homepage.html" method="post" class="form1 form-border form-color form-inline" onsubmit="return check()">
+        <div class="form-group">
+            <label for="username" class="sr-only">账号：</label>
+            <input type="text" name="username" id="username" class="input-style form-control" style="width: 170px;height: 25px;" placeholder="用户名">
+        </div>
+        <div class="form-group">
+            <label for="password" class="sr-only">密码：</label>
+            <input type="password" name="password" id="password" class="input-style form-control" style="width: 170px;height:25px;" placeholder="密码">
+        </div>
+        <div class="form-group submit">
+            <input type="submit" name="submit" id="submit" class="button-glow button-rounded button-raised button-primary " value="登录">
+        </div>
+        <p id="register">没有用户名?<a href="register.html" title="注册">请点击此处注册</a></p>
+    </form>
+</nav>
+</header>
+<div id="mid_body">
+    <img src="img/670ca400c621ce533886b282e9bc795a.png" id="icon_mh">
+    <img src="img/57105c7cc7fff.png" id="icon_1">
+    <div id="left_nav">
+        <ul id="left_ul">
+            <li class="left_li"><a href="#my_img">人生经历</a></li>
+            <li class="left_li"><a href="#my_story">心情日志</a></li>
+            <li class="left_li"><a href="#my_book">好书推荐</a></li>
+            <li class="left_li"><a href="#your_ly">访客留言</a></li>
+            <li class="left_li"><a href="#photo">联系我们</a></li>
+        </ul>
+    </div>
+    <img src="img/f5318eb1f99b3688ad222c565d7c8ffd.png" id="icon_2">
+    <div id="my_img">
+        <div id="myCarousel" class="carousel slide my_img">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="img/gz1.jpg" alt="First slide"></a>
+                </div>
+                <div class="item">
+                    <a href="#" ><img src="img/gz2.jpg" alt="Second slide"></a>
+                </div>
+                <div class="item">
+                    <a href="#" ><img src="img/ls.jpg" alt="Third slide"></a>
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div id="my_story">
+
+    </div>
+    <div id="my_book">
+
+    </div>
+    <div id="your_ly">
+        <div id="ly_zs" style="overflow: auto;background: #FFFFFF;color: #000000;">
+
+        </div>
+        <div id="add_ly">
+            <form id="ly" method="get" action="homepage.html" onsubmit="return check_ly()">
+                <textarea style="resize: none;" id="fans_ly" maxlength="200"></textarea>
+                <div style="width: 485px;height: 55px;position: relative;">
+                    <input type="submit"  style="width:100px;height: 40px;margin: 10px auto;" class="form-control" value="提交留言">
+                </div>
+            </form>
+        </div>
+        <div class="err_ly">
+            <p>登录后方可留言</p>
+            <p style="margin-top: 10px">
+                <a  style="margin-top: 10px;padding: 20px 70px;text-decoration: none;" href="login.html" class="button-glow button-rounded button-highlight">点击登录</a>
+            </p>
+        </div>
+    </div>
+</div>
+<footer id="photo">
+    <div id="join_us">
+        <ul>
+            <li>加入我们</li>
+            <li>关于我们</li>
+            <li>友情链接</li>
+            <li>联系我们</li>
+        </ul>
+    </div>
+    <div id="my_bq" >
+        <p>版权声明</p>
+        <p>此网站仅供学习使用，如有任何不发分子盗用该网站用作商业活动，本网站作者不对此种行为负责，并将向公安机关报警，采取必要的保护版权的行为。</p>
+    </div>
+    <div id="my_photo">
+        <img src="img/电话.png" alt="电话">
+        <div id="call">
+            <p>联系电话</p>
+            <p>15608217819</p>
+        </div>
+    </div>
+</footer>
+</div>
+<div id="information">
+    <div class="my_inf">
+        <img src="img/错误.png" alt="关闭" title="关闭窗口" class="error">
+        <img src="img/个人中心用户.png" alt="个人信息" id="me">
+        <p class="my_bt">个人信息</p>
+        <p class="my_nr">
+            <span>姓名（Name）：冯立辉</span>
+            <span>年龄（Age）：22</span>
+            <span>手机（Cellphone）：15608217819</span>
+            <span>邮箱（E-mail）：912545770@qq.com</span>
+            <span>个人主页（Personal page）：正在制作中（如有需要可以展示）</span>
+            <span>毕业学校（Graduate from）：西南民族大学</span>
+            <span>专业（Major）：软件工程</span>
+            <span>学位（Degree）：学士学位</span>
+            <span>GPA：2.87</span>
+            <span>所获荣誉（Scholarship）：</span>
+                <span>2015-2016学年校级二等奖学金<br>
+                2015-2016学年优秀学生</span>
+        </p>
+        <img src="img/自拍.jpg" alt="个人照片" id="my_ph">
+    </div>
+    <div class="my_inf">
+        <img src="img/错误.png" alt="关闭" title="关闭窗口" class="error">
+        <img src="img/工作经历.png" alt="工作经历" id="work">
+        <p class="my_bt">工作经历</p>
+        <p class="my_nr"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp于2017年3月在<a href="http://www.ilanhai.cn/" title="蓝海基业" target="_blank">成都蓝海基业股份有限公司</a>实习3个月，公司大部分业务为设计制
+            作企业网站，UI设计师提供psd格式的布局图，根据布局图利用前端代码将其生成网
+            站，并调用后端封装的json将其运用在前端网站以实现与客户的数据交互。</span>
+                <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp于2017年6月毕业，在<a href="http://www.jiuqi.com.cn/" title="久其软件" target="_blank">成都久其软件公司</a>工作一年，其间从事软件实施工程师的工作，因为能熟练编写网站，
+                于17年10月，11月，12月被派到北京总部云平台研发部门从事web前端工作，主要负责国家部门决算网络版系统10.0版本的部分页面编写工作，
+                根据UI设计师提供的布局图，利用前端代码生成部分网页模块，并根据后端研发提供的json数据，将其展示在网页中，
+                以实现与财政客户的数据交互。同时也是蒲江县资产项目和部门决算项目，甘孜州资产项目负责人，能根据客户提出的需求，提供多种不同的解决方案。 </span>
+            <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp自己在平时也有制作网站系统，有做过一个完整的成绩查询与奖学金评测系统，前端和后端代码都是本人独自一人完成，
+                后端使用的是PHP脚本语言，数据库使用的是Mysql，能利用ajax实现前后端之间的数据传输，并利用百度的E-Charts插件实现数据的图形化展示，
+                在之前也成功将其发布到阿里的web托管服务器上。同时本人的个人主页正在制作当中，如有需要，可以当场展示。</span>
+        </p>
+    </div>
+    <div class="my_inf">
+        <img src="img/错误.png" alt="关闭" title="关闭窗口" class="error">
+        <img src="img/兴趣定向.png" alt="兴趣爱好" id="xq">
+        <p class="my_bt">兴趣爱好</p>
+        <p class="my_nr">
+            <span>喜欢学习一些网页前沿技术</span>
+            <span>喜欢研究一些在开发中遇到的问题</span>
+            <span>喜欢打乒乓，跑步，旅游</span>
+            <span>对物品的组装有一定的喜好</span>
+            <img src="img/物品组装.jpg" class="exp1">
+            <img src="img/甘孜旅游.jpg" class="exp2">
+            <img src="img/网页制作.jpg" class="exp3">
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    var flag=false;
+    window.onload=function () {
+        $.ajax({
+            url: "php/selectly.php",
+            async: true,
+            type: "GET",
+            dataType: "text",
+            success: function (data) {
+                if (data) {
+                    $.each($.parseJSON(data), function (i, obj) {
+                        $("#ly_zs").append("<p class='ly_name'></p>" + "<p class='ly_time'></p>" + "<p class='ly_speak'></p>");
+                        $(".ly_name:eq(-1)").text(obj.username);
+                        $(".ly_time:eq(-1)").text(obj.date);
+                        $(".ly_speak:eq(-1)").text(obj.ly);
+                    });
+                }
+            }
+        });
+    }
+    $(document).ready(function(){
+        $(".nav a").mouseenter(function () {
+            $(this).css({"background-color":"rgba(255,255,255,0.6)","color":"#ff2d01"});
+            $(this).siblings(".nav_2").css("display","block");
+            $(this).parents(".nav").siblings(".nav").children(".nav_2").css("display","none");
+        });
+        $(".nav a").mouseleave(function () {
+            $(this).css({"background-color":"","color":"#ff9b02"});
+        });
+        $(".nav_2").mouseleave(function () {
+            $(this).css("display","none");
+        });
+        $("#login a").mouseenter(function () {
+            if ($.cookie('username') == undefined || $.cookie('username') == "") {
+                $("#form1").fadeIn(300);
+            }
+            else{
+                $("#welcome").fadeIn(300);
+                $("#cookies").text($.cookie("username"));
+            }
+        });
+        $("#login a").mouseleave(function () {
+            setTimeout(function () {
+                $("#form1").mouseenter(function () {
+                    flag=true;
+                });
+                $("#welcome").mouseenter(function(){
+                   flag=true;
+                });
+                if(!flag) {
+                    $("#form1").fadeOut(300);
+                    $("#welcome").fadeOut(300);
+                }
+            },300);
+            flag=false;
+        });
+        $("#form1").mouseleave(function () {
+            $(this).fadeOut(300);
+        });
+        $("#welcome").mouseleave(function(){
+           $(this).fadeOut(300);
+        });
+        $("#work_per li").click(function () {
+            var index = $("#work_per li").index($(this));
+            $("#information").css("display", "block");
+            $(".my_inf").eq(index).css("display", "block");
+
+        });
+        $(".error").click(function () {
+            $(this).parent().parent().css("display", "none");
+            $(this).parent().css("display", "none");
+        });
+        if ($.cookie('username') == undefined || $.cookie('username') == "") {
+            $(".err_ly").css("display", "block");
+        }
+        else {
+            $(".err_ly").css("display", "none");
+        }
+        $("#zx a").click(function () {
+            $.cookie('username',"",{ path: "/"});
+        });
+    });
+    var n;
+    function check() {
+        $.ajax({
+            url: "php/login.php",
+            async: false,//改为同步方式
+            type: "POST",
+            data: {username: $("#username").val(), password: $("#password").val()},
+            success: function (data) {
+                n = data;
+            }
+        });
+        if (!n) {
+            alert("用户名或密码错误");
+            return false;
+        }
+         else{
+            return true;
+        }
+    }
+    var ly;
+    function check_ly(){
+        $.ajax({
+           url:"php/checkly.php",
+            async:false,
+            type:"GET",
+            data:{fans_ly:$("#ly textarea").val()},
+            success:function (data) {
+                 ly=data;
+            }
+        });
+        if(ly){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
